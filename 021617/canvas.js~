@@ -1,0 +1,14 @@
+var button = document.getElementById("b"); 
+var c = document.getElementById("canvas");
+
+var circle = function(e){
+//    var x = e.clientX-10;
+//    var y = e.clientY-80;
+    var ctx = c.getContext('2d');
+    ctx.beginPath();
+    ctx.fillStyle = "#FF0000";
+//    ctx.arc(x,y,20,0,2*Math.PI);
+    ctx.arc(100,100,20,0,2*Math.PI);
+    ctx.fill();
+    ctx.stroke();
+};
