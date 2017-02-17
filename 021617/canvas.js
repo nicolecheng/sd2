@@ -1,6 +1,6 @@
 var button = document.getElementById("b"); 
 var c = document.getElementById("canvas");
-
+var rid;
 
 var clear = function(){
     var ctx = c.getContext('2d');
@@ -8,17 +8,13 @@ var clear = function(){
     ctx.clearRect(0,0,c.clientWidth,c.clientHeight);	
 }
 
-button.addEventListener("click", stop);
-
-var rid;
+var stop = function(){
+    window.cancelAnimationFrame(rid);
+}
 
 var animateDot = function(){
     var x = 0;
-
-    var stop = function(){
-	window.cancelAnimationFrame(rid);
-    }
-
+    window.cancelAnimationFrame(rid); // ensures only 1 instance of circle runs
     var circle = function(){
 	clear();
 	var ctx = c.getContext('2d');
@@ -30,13 +26,9 @@ var animateDot = function(){
 	x++;
 	rid = window.requestAnimationFrame( circle );
     };
-
     circle();
-
-};
-
-//circle();
-
-//window.requestAnimationFrame( circle );
+}; // closure fxn, limits the scope of certain vars
 
 c.addEventListener('click',animateDot);
+
+button.addEventListener("click", stop);
